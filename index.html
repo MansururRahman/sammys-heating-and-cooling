@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Sammy's Heating and Cooling – Website Concept</title>
+<meta name="description" content="Website concept for Sammy's Heating and Cooling LLC, Marianna, FL. Demo only.">
+<meta name="theme-color" content="#fbfbfd">
+<style>
+  :root{
+    --ink:#1d1d1f;
+    --ink-2:#424245;
+    --muted:#6e6e73;
+    --hair:rgba(0,0,0,.08);
+    --bg:#fbfbfd;
+    --panel:#f5f5f7;
+    --white:#ffffff;
+    --blue:#0071e3;
+    --blue-hover:#0077ed;
+    --cool-1:#2f80ff;
+    --cool-2:#18c8ff;
+    --warm:#ff7a45;
+    --night:#0b0c10;
+    --night-2:#16181d;
+    --radius-xl:32px;
+    --radius-l:22px;
+    --radius-m:14px;
+    --ease:cubic-bezier(.22,.8,.2,1);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI Variable Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.47;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* Demo notice */
+  .demo{background:var(--night);color:#d2d2d7;font-size:12px;text-align:center;padding:9px 16px;letter-spacing:0}
+  .demo b{color:#fff;font-weight:600}
+
+  /* Navigation */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;letter-spacing:-.02em}
+  .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--cool-1),var(--cool-2));display:grid;place-items:center;box-shadow:0 2px 8px rgba(47,128,255,.35)}
+  .links{display:flex;gap:28px;font-size:13px;color:var(--ink-2)}
+  .links a{transition:color .2s}
+  .links a:hover{color:var(--ink)}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:980px;font-weight:500;cursor:pointer;border:0;font-family:inherit;transition:background .2s,transform .2s var(--ease),box-shadow .2s}
+  .pill:active{transform:scale(.97)}
+  .pill-sm{font-size:13px;padding:7px 15px;background:var(--blue);color:#fff}
+  .pill-sm:hover{background:var(--blue-hover)}
+  .pill-lg{font-size:17px;padding:14px 26px}
+  .pill-blue{background:var(--blue);color:#fff;box-shadow:0 8px 24px rgba(0,113,227,.28)}
+  .pill-blue:hover{background:var(--blue-hover)}
+  .pill-link{background:transparent;color:var(--blue);padding-left:8px;padding-right:8px}
+  .pill-link:hover{text-decoration:underline}
+
+  /* Hero */
+  .hero{position:relative;padding:88px 0 40px;text-align:center;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:620px;background:
+      radial-gradient(40% 50% at 30% 40%,rgba(24,200,255,.16),transparent 70%),
+      radial-gradient(40% 50% at 72% 30%,rgba(47,128,255,.14),transparent 70%);
+    pointer-events:none}
+  .eyebrow{position:relative;font-size:15px;font-weight:600;color:var(--muted);letter-spacing:-.01em;margin:0 0 14px}
+  .hero h1{position:relative;font-size:clamp(48px,8.4vw,96px);line-height:1.02;letter-spacing:-.045em;font-weight:700;margin:0 auto 18px;max-width:12ch}
+  .grad{background:linear-gradient(100deg,var(--cool-1) 10%,var(--cool-2) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{position:relative;font-size:clamp(19px,2.2vw,24px);line-height:1.35;color:var(--ink-2);max-width:620px;margin:0 auto 30px;letter-spacing:-.02em}
+  .ctas{position:relative;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .rating{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:14px;color:var(--muted)}
+  .stars{color:#ff9f0a;letter-spacing:1px;font-size:13px}
+
+  /* Thermostat */
+  .dial-stage{position:relative;margin:56px auto 0;width:min(440px,86vw);aspect-ratio:1}
+  .dial-glow{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(24,200,255,.35),transparent 65%);filter:blur(30px);animation:breathe 6s ease-in-out infinite}
+  .dial{position:absolute;inset:0;border-radius:50%;background:linear-gradient(145deg,#ffffff,#eceef3);box-shadow:0 40px 80px -30px rgba(20,40,80,.35),inset 0 2px 0 #fff,inset 0 -10px 30px rgba(0,0,0,.05)}
+  .dial svg{position:absolute;inset:0;width:100%;height:100%}
+  .ring-track{stroke:rgba(0,0,0,.06)}
+  .ring{transition:stroke-dashoffset 2.2s var(--ease)}
+  .ticks line{stroke:rgba(0,0,0,.14);stroke-width:2;stroke-linecap:round}
+  .dial-face{position:absolute;inset:22%;border-radius:50%;background:linear-gradient(160deg,#16181d,#0b0c10);display:grid;place-items:center;text-align:center;box-shadow:inset 0 2px 10px rgba(255,255,255,.08),0 20px 40px -10px rgba(0,0,0,.5)}
+  .temp{font-size:clamp(56px,11vw,96px);font-weight:200;color:#fff;letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
+  .temp sup{font-size:.38em;font-weight:300;vertical-align:top;position:relative;top:.25em;margin-left:2px}
+  .mode{margin-top:8px;font-size:13px;font-weight:600;color:var(--cool-2);letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+  .mode i{width:6px;height:6px;border-radius:50%;background:var(--cool-2);box-shadow:0 0 10px var(--cool-2);animation:pulse 1.8s ease-in-out infinite}
+  .dial-caption{margin:22px 0 0;font-size:14px;color:var(--muted)}
+  @keyframes breathe{0%,100%{opacity:.7;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* Stats */
+  .stats{padding:72px 0 24px}
+  .stats ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border-radius:var(--radius-l);overflow:hidden}
+  .stats li{background:var(--bg);padding:26px 20px;text-align:center}
+  .stats b{display:block;font-size:34px;font-weight:600;letter-spacing:-.035em;line-height:1.1}
+  .stats span{font-size:14px;color:var(--muted)}
+
+  /* Section titles */
+  section{padding:96px 0}
+  .head{text-align:center;max-width:720px;margin:0 auto 48px}
+  .head h2{font-size:clamp(36px,5.2vw,56px);line-height:1.07;letter-spacing:-.04em;font-weight:700;margin:0 0 14px}
+  .head p{font-size:19px;color:var(--muted);margin:0;letter-spacing:-.015em}
+  .note{display:inline-block;font-size:12px;color:var(--muted);background:var(--panel);border-radius:980px;padding:4px 12px;margin-top:14px}
+
+  /* Bento */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(220px,auto);gap:18px}
+  .tile{position:relative;border-radius:var(--radius-xl);padding:34px;background:var(--panel);overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(0,0,0,.25)}
+  .tile h3{font-size:28px;letter-spacing:-.03em;line-height:1.12;margin:0 0 10px;font-weight:600}
+  .tile p{margin:0;color:var(--ink-2);font-size:17px;max-width:34ch}
+  .tile .k{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);margin:0 0 10px}
+  .t-repair{grid-column:span 4;grid-row:span 2;background:linear-gradient(160deg,#0b1a33 0%,#0a2a5c 55%,#0e4fa8 100%);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;min-height:460px}
+  .t-repair h3{font-size:clamp(34px,4.4vw,48px)}
+  .t-repair p,.t-repair .k{color:rgba(255,255,255,.75)}
+  .t-repair .flow{position:absolute;top:34px;right:34px;left:34px;height:220px}
+  .t-install{grid-column:span 2}
+  .t-heat{grid-column:span 2;background:linear-gradient(160deg,#fff4ec,#ffe3d3)}
+  .t-heat .k{color:#c2410c}
+  .t-tune{grid-column:span 3}
+  .t-sos{grid-column:span 3;background:var(--night);color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+  .t-sos p{color:rgba(255,255,255,.7)}
+  .t-sos a{align-self:flex-start}
+  .glyph{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;margin-bottom:22px;background:#fff;box-shadow:0 6px 16px -6px rgba(0,0,0,.15)}
+  .air path{stroke:url(#airGrad);stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:14 10;animation:flow 3.5s linear infinite}
+  .air path:nth-child(2){animation-duration:4.4s;opacity:.7}
+  .air path:nth-child(3){animation-duration:5.2s;opacity:.45}
+  @keyframes flow{to{stroke-dashoffset:-240}}
+
+  /* Steps */
+  .panel{background:var(--panel)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+  .step{background:var(--white);border-radius:var(--radius-l);padding:32px}
+  .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-weight:600;font-size:15px;margin-bottom:20px}
+  .step h3{margin:0 0 8px;font-size:22px;letter-spacing:-.025em;font-weight:600}
+  .step p{margin:0;color:var(--muted);font-size:16px}
+
+  /* Booking */
+  .book{background:radial-gradient(70% 60% at 20% 0%,rgba(47,128,255,.28),transparent 60%),radial-gradient(60% 50% at 100% 100%,rgba(24,200,255,.18),transparent 60%),var(--night);color:#f5f5f7}
+  .book .head p{color:#a1a1a6}
+  .glass{max-width:760px;margin:0 auto;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-xl);padding:clamp(22px,4vw,44px);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 40px 100px -40px rgba(0,0,0,.6)}
+  fieldset{border:0;margin:0 0 22px;padding:0}
+  legend,.lbl{font-size:13px;font-weight:600;color:#a1a1a6;margin:0 0 10px;padding:0;letter-spacing:.01em}
+  .seg{display:flex;flex-wrap:wrap;gap:8px}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg label{padding:10px 16px;border-radius:980px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;user-select:none}
+  .seg label:hover{background:rgba(255,255,255,.14)}
+  .seg input:checked+label{background:#f5f5f7;color:var(--ink);border-color:#f5f5f7}
+  .seg input:focus-visible+label{outline:3px solid rgba(24,200,255,.6);outline-offset:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field{display:grid;gap:8px;margin-bottom:14px}
+  .field input,.field textarea{font:inherit;font-size:17px;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-m);padding:14px 16px;width:100%;transition:border-color .2s,background .2s;color-scheme:dark}
+  .field input::placeholder,.field textarea::placeholder{color:#6e6e73}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--cool-2);background:rgba(255,255,255,.1);box-shadow:0 0 0 4px rgba(24,200,255,.18)}
+  .submit-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:8px}
+  .submit-row small{color:#86868b;font-size:13px}
+  .done{display:none;text-align:center;padding:28px 10px}
+  .done .check{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,var(--cool-1),var(--cool-2));display:grid;place-items:center;box-shadow:0 12px 30px rgba(24,200,255,.35);transform:scale(.6);opacity:0;transition:transform .6s var(--ease),opacity .4s}
+  .done.show .check{transform:scale(1);opacity:1}
+  .done h3{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}
+  .done p{color:#a1a1a6;margin:0 0 20px}
+  .linkish{background:none;border:0;color:var(--cool-2);font:inherit;cursor:pointer}
+
+  /* Reviews */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .rv{border-radius:var(--radius-l);padding:30px;background:var(--white);border:1px dashed rgba(0,0,0,.16);color:var(--muted);font-size:16px}
+  .rv strong{display:block;color:var(--ink);margin:8px 0 6px;font-size:17px}
+  .big-rating{display:flex;align-items:baseline;justify-content:center;gap:14px;margin:0 0 40px}
+  .big-rating b{font-size:80px;font-weight:600;letter-spacing:-.05em;line-height:1}
+  .big-rating span{color:var(--muted);font-size:17px}
+
+  /* Areas */
+  .areas{list-style:none;padding:0;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:760px}
+  .areas li{padding:12px 20px;border-radius:980px;background:var(--white);border:1px solid var(--hair);font-size:16px;font-weight:500;transition:transform .3s var(--ease)}
+  .areas li:first-child{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .areas li:hover{transform:translateY(-2px)}
+
+  /* Contact */
+  .contact{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+  .cbig{border-radius:var(--radius-xl);padding:44px;background:linear-gradient(160deg,#eef5ff,#e1f3ff);display:flex;flex-direction:column;justify-content:space-between;gap:26px;min-height:300px}
+  .cbig .num{font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-.04em;line-height:1}
+  .cinfo{display:grid;gap:18px}
+  .ci{border-radius:var(--radius-l);background:var(--panel);padding:26px 28px}
+  .ci .k{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 4px}
+  .ci p{margin:0;font-size:19px;letter-spacing:-.02em}
+  .ci a{color:var(--blue)}
+
+  footer{border-top:1px solid var(--hair);padding:28px 0 40px;font-size:12px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* Mobile dock */
+  .dock{display:none}
+
+  /* Reveal */
+  .rv-in{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .rv-in.on{opacity:1;transform:none}
+
+  @media (max-width:980px){
+    .t-repair{grid-column:span 6}
+    .t-install,.t-heat{grid-column:span 3}
+    .t-tune,.t-sos{grid-column:span 6}
+    .contact{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .links{display:none}
+    .stats ul{grid-template-columns:repeat(2,1fr)}
+    .steps,.reviews{grid-template-columns:1fr}
+    .t-install,.t-heat{grid-column:span 6}
+    section{padding:72px 0}
+    .hero{padding-top:60px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 16px}
+    .grid2{grid-template-columns:1fr}
+    .tile{padding:26px;border-radius:26px}
+    .t-repair{min-height:420px}
+    .cbig{padding:30px}
+    .nav .pill-sm{display:none}
+    body{padding-bottom:86px}
+    .dock{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:8px;border-radius:22px;background:rgba(251,251,253,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid var(--hair);box-shadow:0 12px 40px -10px rgba(0,0,0,.25);z-index:60}
+    .dock a{padding:13px 10px;font-size:16px}
+    .dock .alt{background:var(--ink);color:#fff}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv-in{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo"><b>Website concept</b> prepared for Sammy's Heating and Cooling. Not the official site. Forms do not send anything.</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Sammy's Heating and Cooling, home">
+      <span class="mark" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20M4.9 6.5l14.2 11M4.9 17.5l14.2-11"/></svg>
+      </span>
+      Sammy's
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#book">Book</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="pill pill-sm" href="tel:+18505732084">Call</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="eyebrow">Heating &amp; Cooling · Marianna, Florida · Since 2014</p>
+      <h1 id="h1">Cool comes <span class="grad">home.</span></h1>
+      <p class="sub">Air conditioning and heating repair, installation and care for homes across Marianna and Jackson County.</p>
+      <div class="ctas">
+        <a class="pill pill-lg pill-blue" href="#book">Book a visit</a>
+        <a class="pill pill-lg pill-link" href="tel:+18505732084">Call (850) 573-2084 ›</a>
+      </div>
+      <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.6 on Google from 74 reviews</div>
+
+      <div class="dial-stage rv-in" aria-hidden="true">
+        <div class="dial-glow"></div>
+        <div class="dial">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2f80ff"/><stop offset="1" stop-color="#18c8ff"/>
+              </linearGradient>
+            </defs>
+            <g class="ticks" id="ticks"></g>
+            <circle class="ring-track" cx="100" cy="100" r="86" fill="none" stroke-width="6"
+              stroke-dasharray="405 540" transform="rotate(135 100 100)" stroke-linecap="round"/>
+            <circle class="ring" id="ring" cx="100" cy="100" r="86" fill="none" stroke="url(#ringGrad)" stroke-width="6"
+              stroke-dasharray="405 540" stroke-dashoffset="405" transform="rotate(135 100 100)" stroke-linecap="round"/>
+          </svg>
+          <div class="dial-face">
+            <div>
+              <div class="temp"><span id="temp">88</span><sup>°</sup></div>
+              <div class="mode"><i></i>Cooling</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="dial-caption">From Florida heat to just right.</p>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <ul class="rv-in">
+        <li><b>4.6</b><span>Google rating</span></li>
+        <li><b>74</b><span>Customer reviews</span></li>
+        <li><b>2014</b><span>Serving Jackson County since</span></li>
+        <li><b>24/7</b><span>Online requests</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="services" aria-labelledby="svc">
+    <div class="wrap">
+      <div class="head rv-in">
+        <h2 id="svc">Everything your air needs.</h2>
+        <p>Repair, replacement and year-round care.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile t-repair rv-in">
+          <svg class="flow air" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="airGrad" x1="0" x2="1"><stop offset="0" stop-color="#18c8ff" stop-opacity="0"/><stop offset=".5" stop-color="#18c8ff"/><stop offset="1" stop-color="#2f80ff" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0 60 C150 20 250 100 400 60 S560 30 600 50"/>
+            <path d="M0 110 C140 70 260 150 410 110 S560 80 600 100"/>
+            <path d="M0 160 C150 120 250 200 400 160 S560 130 600 150"/>
+          </svg>
+          <p class="k">AC Repair</p>
+          <h3>Blowing warm air?<br>We'll find out why.</h3>
+          <p>Strange noises, leaks, frozen coils or a unit that won't start.</p>
+        </article>
+
+        <article class="tile t-install rv-in">
+          <div class="glyph" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M12 16v4M7 9h10M7 12h6"/></svg>
+          </div>
+          <p class="k">Installation</p>
+          <h3>New systems, sized right.</h3>
+          <p>A clear written quote before any work begins.</p>
+        </article>
+
+        <article class="tile t-heat rv-in">
+          <div class="glyph" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff7a45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 4 4.5 4 8.5a4 4 0 0 1-8 0c0-1.6.8-2.8 1.6-3.6.3 1.4 1 2.1 1.9 2.1C11.5 7.6 11 5.5 12 3z"/><path d="M12 21a6 6 0 0 0 6-6"/></svg>
+          </div>
+          <p class="k">Heating</p>
+          <h3>Ready for the cold snaps.</h3>
+          <p>Heat pump and furnace repair.</p>
+        </article>
+
+        <article class="tile t-tune rv-in">
+          <div class="glyph" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+          </div>
+          <p class="k">Maintenance</p>
+          <h3>Catch it before summer does.</h3>
+          <p>Seasonal tune-ups that keep systems efficient and help avoid surprise breakdowns.</p>
+        </article>
+
+        <article class="tile t-sos rv-in">
+          <div>
+            <p class="k" style="color:#86868b">No cooling at all?</p>
+            <h3>Calling is fastest.</h3>
+            <p>Talk to the team directly about urgent problems.</p>
+          </div>
+          <a class="pill pill-lg pill-blue" href="tel:+18505732084">Call (850) 573-2084</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="panel" aria-labelledby="howh">
+    <div class="wrap">
+      <div class="head rv-in">
+        <h2 id="howh">Simple from start to cool.</h2>
+        <p>Request any time. We take it from there.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv-in"><h3>Tell us what's wrong</h3><p>Book online in under a minute, day or night, or give us a call.</p></div>
+        <div class="step rv-in"><h3>We confirm a time</h3><p>Sammy's calls you back to schedule a visit that works for you.</p></div>
+        <div class="step rv-in"><h3>Comfort, restored</h3><p>Know the problem and the price before the work begins.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="book" aria-labelledby="bookh">
+    <div class="wrap">
+      <div class="head rv-in">
+        <h2 id="bookh">Book a visit.</h2>
+        <p>Requests arrive even when the team is out on a job.</p>
+      </div>
+
+      <div class="glass rv-in">
+        <form id="form" novalidate>
+          <fieldset>
+            <legend>What do you need?</legend>
+            <div class="seg">
+              <input type="radio" name="svc" id="s1" value="AC repair" checked><label for="s1">AC repair</label>
+              <input type="radio" name="svc" id="s2" value="New system quote"><label for="s2">New system quote</label>
+              <input type="radio" name="svc" id="s3" value="Heating"><label for="s3">Heating</label>
+              <input type="radio" name="svc" id="s4" value="Tune-up"><label for="s4">Tune-up</label>
+            </div>
+          </fieldset>
+
+          <div class="grid2">
+            <div class="field"><label class="lbl" for="n">Name</label><input id="n" name="name" autocomplete="name" placeholder="Your name" required></div>
+            <div class="field"><label class="lbl" for="p">Phone</label><input id="p" name="phone" type="tel" autocomplete="tel" placeholder="(850) 555-0123" required></div>
+          </div>
+          <div class="field"><label class="lbl" for="a">Service address</label><input id="a" name="address" autocomplete="street-address" placeholder="Street, city"></div>
+
+          <div class="grid2">
+            <div class="field"><label class="lbl" for="d">Preferred day</label><input id="d" name="day" type="date"></div>
+            <fieldset style="margin-bottom:14px">
+              <legend>Time of day</legend>
+              <div class="seg">
+                <input type="radio" name="time" id="t1" value="Morning" checked><label for="t1">Morning</label>
+                <input type="radio" name="time" id="t2" value="Afternoon"><label for="t2">Afternoon</label>
+                <input type="radio" name="time" id="t3" value="Any"><label for="t3">Any</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="field"><label class="lbl" for="i">What's happening?</label><textarea id="i" name="issue" rows="3" placeholder="e.g. AC runs but blows warm air"></textarea></div>
+
+          <div class="submit-row">
+            <small>For no-cooling emergencies, calling is fastest.</small>
+            <button class="pill pill-lg pill-blue" type="submit">Request visit</button>
+          </div>
+        </form>
+
+        <div class="done" id="done" role="status" aria-live="polite">
+          <div class="check" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h3>Request received.</h3>
+          <p>Demo only: on the live site, this goes straight to Sammy's phone and email.</p>
+          <button class="linkish" type="button" id="again">Make another request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" aria-labelledby="revh">
+    <div class="wrap">
+      <div class="head rv-in">
+        <h2 id="revh">Neighbors notice.</h2>
+      </div>
+      <div class="big-rating rv-in"><b>4.6</b><span><span class="stars" aria-hidden="true">★★★★★</span><br>74 Google reviews</span></div>
+      <div class="reviews">
+        <div class="rv rv-in"><span class="stars" aria-hidden="true">★★★★★</span><strong>Real Google review</strong>Selected customer reviews are added here with permission.</div>
+        <div class="rv rv-in"><span class="stars" aria-hidden="true">★★★★★</span><strong>Real Google review</strong>Selected customer reviews are added here with permission.</div>
+        <div class="rv rv-in"><span class="stars" aria-hidden="true">★★★★★</span><strong>Real Google review</strong>Selected customer reviews are added here with permission.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="areah">
+    <div class="wrap">
+      <div class="head rv-in">
+        <h2 id="areah">Close to home.</h2>
+        <p>Serving Marianna and nearby Jackson County towns.</p>
+        <span class="note">Service area to be confirmed with Sammy's</span>
+      </div>
+      <ul class="areas rv-in">
+        <li>Marianna</li><li>Cottondale</li><li>Grand Ridge</li><li>Greenwood</li><li>Sneads</li><li>Alford</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="ch">
+    <div class="wrap">
+      <div class="head rv-in"><h2 id="ch">Talk to a real person.</h2></div>
+      <div class="contact">
+        <div class="cbig rv-in">
+          <div>
+            <p class="k" style="margin:0 0 8px;color:var(--muted);font-weight:600;font-size:13px">Call Sammy's</p>
+            <div class="num">(850) 573-2084</div>
+          </div>
+          <a class="pill pill-lg pill-blue" style="align-self:flex-start" href="tel:+18505732084">Call now</a>
+        </div>
+        <div class="cinfo">
+          <div class="ci rv-in"><p class="k">Address</p><p><a href="https://www.google.com/maps/search/?api=1&amp;query=3956+Old+Cottondale+Rd+Marianna+FL" target="_blank" rel="noopener">3956 Old Cottondale Rd, Marianna, FL</a></p></div>
+          <div class="ci rv-in"><p class="k">Hours</p><p>To be confirmed</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Sammy's Heating and Cooling LLC · Marianna, FL</span>
+    <span>Website concept. Not the official site.</span>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="Quick actions">
+  <a class="pill pill-blue" href="tel:+18505732084">Call now</a>
+  <a class="pill alt" href="#book">Book online</a>
+</nav>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Dial ticks
+  var g = document.getElementById('ticks');
+  for (var k = 0; k <= 30; k++) {
+    var ang = (135 + k * 9) * Math.PI / 180;
+    var r1 = 72, r2 = k % 5 === 0 ? 64 : 68;
+    var l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', 100 + r1 * Math.cos(ang)); l.setAttribute('y1', 100 + r1 * Math.sin(ang));
+    l.setAttribute('x2', 100 + r2 * Math.cos(ang)); l.setAttribute('y2', 100 + r2 * Math.sin(ang));
+    g.appendChild(l);
+  }
+
+  // Dial: cool from 88 to 72
+  var ring = document.getElementById('ring');
+  var temp = document.getElementById('temp');
+  var from = 88, to = 72, arc = 405;
+  function setRing(t) { ring.style.strokeDashoffset = arc * (1 - (t - 60) / 30); }
+  if (reduce) { temp.textContent = to; setRing(to); }
+  else {
+    setRing(from);
+    setTimeout(function () {
+      var start = null, dur = 2200;
+      setRing(to);
+      requestAnimationFrame(function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        temp.textContent = Math.round(from + (to - from) * e);
+        if (p < 1) requestAnimationFrame(step);
+      });
+    }, 500);
+  }
+
+  // Scroll reveal
+  var els = document.querySelectorAll('.rv-in');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('on'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // Demo form
+  var form = document.getElementById('form');
+  var done = document.getElementById('done');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.style.display = 'none';
+    done.style.display = 'block';
+    requestAnimationFrame(function () { done.classList.add('show'); });
+  });
+  document.getElementById('again').addEventListener('click', function () {
+    done.classList.remove('show');
+    done.style.display = 'none';
+    form.reset();
+    form.style.display = 'block';
+  });
+})();
+</script>
+</body>
+</html>
